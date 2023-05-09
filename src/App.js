@@ -1,25 +1,49 @@
 import React, { useState } from "react";
 import Dropzone from "./components/Dropzone";
-import "./App.css"; // Import the new CSS file
+import "./App.css"; 
 
 const App = () => {
   const [transcript, setTranscript] = useState("");
   const [userQuestion, setUserQuestion] = useState("");
   const [messages, setMessages] = useState([]);
+  const [uploadedFile, setUploadedFile] = useState(null);
+
 
   const handleFileUpload = async (files) => {
-    // Process the audio file and send it to the Google Speech-to-Text API
-    // ...
-    // Get the transcript and update the component state
-    // ...
+    const file = files[0];
+  
+    if (file.type === "audio/mpeg") {
+      const formData = new FormData();
+      formData.append("file", file);
+  
+      try {
+        const response = await fetch("http://localhost:3001/upload", {
+          method: "POST",
+          body: formData,
+        });
+  
+        if (response.ok) {
+          console.log("File uploaded successfully");
+        } else {
+          console.error("Error uploading the file");
+        }
+      } catch (error) {
+        console.error("Error uploading the file:", error);
+      }
+  
+      // Process the audio file and send it to the Google Speech-to-Text API
+      // ...
+      // Get the transcript and update the component state
+      // ...
+    } else {
+      console.error("Please upload an MP3 file");
+    }
   };
 
   const handleQuestionSubmit = async (e) => {
     e.preventDefault();
-    // Add the user question and generic answer to the messages array
     addMessage("user", userQuestion);
     addMessage("bot", "This is a generic answer.");
-    // Clear the user question input field
     setUserQuestion("");
   };
 

@@ -24,3 +24,14 @@ services:
         source: ../audio-transcribe/data
         target: /app/data
 
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    ports:
+      - "3001:3001"
+    volumes:
+      - type: bind
+        source: ../audio-transcribe/data
+        target: /app/data
+

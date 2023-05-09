@@ -11,7 +11,7 @@ const Dropzone = ({ onDrop }) => {
   return (
     <div {...getRootProps()} style={{ border: "2px dashed #ccc", padding: "20px" }}>
       <input {...getInputProps()} />
-      {isDragActive ? <p>Drop the audio file here...</p> : <p>Arrastrar audio, o apretar para seleccionar</p>}
+      {isDragActive ? <p>Arrastrar audio...</p> : <p>Arrastrar audio, o apretar para seleccionar</p>}
     </div>
   );
 };
