@@ -87,3 +87,56 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #1669c1;
 }
+
+.chat-container {
+  width: 80%;
+  max-width: 600px;
+  min-height: 0px; /* Set a minimum height for the chat container */
+  max-height: 300px; /* Set a maximum height for the chat container */
+  height: auto; /* Set height to auto */
+  overflow-y: auto; /* Make the chat container scrollable */
+  resize: none; /* Prevent manual resizing */
+  margin: 20px auto;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.chat-messages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-message,
+.bot-message {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.user-message {
+  justify-content: flex-end;
+}
+
+.bot-message {
+  justify-content: flex-start;
+}
+
+.message-content {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 15px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.user-message .message-content {
+  background-color: #007aff;
+  color: white;
+}
+
+.bot-message .message-content {
+  background-color: #e6e6e6;
+  color: #333;
+}
+
