@@ -23,20 +23,34 @@ const App = () => {
         });
   
         if (response.ok) {
-          console.log("File uploaded successfully");
+          console.log("Archivo movido exitosamente");
         } else {
-          console.error("Error uploading the file");
+          console.error("Error moviendo el archivo");
         }
       } catch (error) {
-        console.error("Error uploading the file:", error);
+        console.error("Error moviendo el archivo:", error);
       }
-  
-      // Process the audio file and send it to the Google Speech-to-Text API
-      // ...
-      // Get the transcript and update the component state
-      // ...
+
+      const query = {path: `data/${file.path}`, query: ""}
+
+      const audio = await fetch("http://localhost:8000/create_chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(query)
+      }
+    )
+
+    if (audio.ok) {
+      const result = await audio.json();
+      console.log("Result:", result);
     } else {
-      console.error("Please upload an MP3 file");
+      console.error("Error:", audio.statusText);
+    }
+  
+    } else {
+      console.error("Por favor subir un archivo MP3");
     }
   };
 

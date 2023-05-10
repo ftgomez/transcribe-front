@@ -1,8 +1,10 @@
 const express = require("express");
 const multer = require("multer");
 const fs = require("fs-extra");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 const upload = multer({ dest: "uploads/" });
 
 app.post("/upload", upload.single("file"), async (req, res) => {
@@ -17,18 +19,18 @@ app.post("/upload", upload.single("file"), async (req, res) => {
 
     fs.move(file.path, `${targetFolder}/${file.originalname}`, (err) => {
       if (err) {
-        console.error("Error moving the file:", err);
-        res.status(500).send("Error moving the file");
+        console.error("Error moviendo el archivo:", err);
+        res.status(500).send("Error moviendo el archivo");
       } else {
-        console.log("File moved successfully");
-        res.status(200).send("File moved successfully");
+        console.log("Archivo movido exitosamente");
+        res.status(200).send("Archivo movido exitosamente");
       }
     });
   } else {
-    res.status(400).send("Please upload an MP3 file");
+    res.status(400).send("Por favor subir un archivo MP3");
   }
 });
 
 app.listen(3001, () => {
-  console.log("Server listening on port 3001");
+  console.log("Servidor esperando en el puerto 3001");
 });
