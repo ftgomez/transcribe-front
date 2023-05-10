@@ -91,11 +91,11 @@ button[type="submit"]:hover {
 .chat-container {
   width: 80%;
   max-width: 600px;
-  min-height: 0px; /* Set a minimum height for the chat container */
-  max-height: 300px; /* Set a maximum height for the chat container */
-  height: auto; /* Set height to auto */
-  overflow-y: auto; /* Make the chat container scrollable */
-  resize: none; /* Prevent manual resizing */
+  min-height: 0px; 
+  max-height: 300px; 
+  height: auto; 
+  overflow-y: auto;
+  resize: none;
   margin: 20px auto;
   background-color: #f9f9f9;
   border-radius: 5px;
@@ -115,10 +115,12 @@ button[type="submit"]:hover {
 }
 
 .user-message {
+  text-align: right;
   justify-content: flex-end;
 }
 
 .bot-message {
+  text-align: left;
   justify-content: flex-start;
 }
 
@@ -140,3 +142,12 @@ button[type="submit"]:hover {
   color: #333;
 }
 
+.transcript-container {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  white-space: pre-wrap;
+}

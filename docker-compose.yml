@@ -8,8 +8,9 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - .:/app
-      - /app/node_modules
+      - type: bind
+        source: ../audio-transcribe/data
+        target: /app/data
     environment:
       - CHOKIDAR_USEPOLLING=true
   
