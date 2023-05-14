@@ -61,10 +61,29 @@ const App = () => {
       setChatId(result.chat_id)
       addMessage("bot", "Audio listo. Hazme una pregunta")
 
+      try {
+        const response = await fetch("http://localhost:3001/deleteFile", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({filename: `${file.path}`}),
+        });
+  
+        if (response.ok) {
+          console.log("Archivo borrado exitosamente");
+        } else {
+          console.error("Error borrando el archivo");
+        }
+      } catch (error) {
+        console.error("Error borrando el archivo:", error);
+      }
+
     } else {
       console.error("Error:", audio.statusText);
     }
-  
+
+
     } else {
       console.error("Por favor subir un archivo MP3");
     }
