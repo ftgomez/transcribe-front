@@ -27,7 +27,7 @@ const App = () => {
       formData.append("file", file);
   
       try {
-        const response = await fetch("http://localhost:3001/upload", {
+        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/upload`, {
           method: "POST",
           body: formData,
         });
@@ -45,7 +45,7 @@ const App = () => {
 
       const query = {path: `data/${file.path}`, query: ""}
 
-      const audio = await fetch("http://localhost:8000/create_chat", {
+      const audio = await fetch(`${process.env.REACT_APP_BACK_API}/create_chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +62,7 @@ const App = () => {
       addMessage("bot", "Audio listo. Hazme una pregunta")
 
       try {
-        const response = await fetch("http://localhost:3001/deleteFile", {
+        const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/deleteFile`, {
           method: "POST",
           headers: {
             'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ const App = () => {
     setUserQuestion("");
     const query = {query: userQuestion}
 
-      const audio = await fetch(`http://localhost:8000/chat/${chatId}`, {
+      const audio = await fetch(`${process.env.REACT_APP_BACK_API}/chat/${chatId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
